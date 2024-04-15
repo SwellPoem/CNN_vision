@@ -10,3 +10,14 @@ seed = 2031998
 
 # Gesture classes
 gesture_classes = ['dislike', 'fist', 'four', 'like', 'ok', 'one', 'palm', 'peace', 'three2']
+
+# pth
+pth = 'cnn_model_1.pth'
+
+# yolo paths
+config_path = 'yolo_hand_detection_master/models/cross-hands.cfg'
+weights_path = 'yolo_hand_detection_master/models/cross-hands.weights'
+
+# dataset paths
+train_path = 'hand_poses_dataset_CROP/train'
+test_path = 'hand_test_dataset/test'
