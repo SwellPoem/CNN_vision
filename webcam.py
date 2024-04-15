@@ -3,23 +3,42 @@ import torch
 from torchvision import transforms
 from PIL import Image
 import torch
+import numpy as np
 from yolo_hand_detection_master.yolo import YOLO  # Make sure this import is correct
 from cnn import HandGestureCNN  # Adjust this import based on your directory structure
 from constants import *
 
 
 # Instantiate the YOLO detector
-yolo_config = '/Users/vale/Desktop/Sapienza/Vision/yolo_hand_detection_master/models/cross-hands.cfg'
-yolo_weights = '/Users/vale/Desktop/Sapienza/Vision/yolo_hand_detection_master/models/cross-hands.weights'
+yolo_config = config_path
+yolo_weights = weights_path
 yolo_labels = ['Hand']  # Assuming you have one class for 'Hand'
 yolo_size = 416  # The size parameter must match what was used during YOLO training
 yolo_detector = YOLO(yolo_config, yolo_weights, yolo_labels, size=yolo_size)
 
 # Load your HandGestureCNN
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda' if torch.cuda.is_available() else 'mps')
+if device.type == 'cuda':
+    print(f'Device selected: {torch.cuda.get_device_name(0)}')
+    torch.cuda.manual_seed_all(seed)
+else:
+    if torch.backends.mps.is_available():
+        mps_device = torch.device("mps")
+        x = torch.ones(1, device=mps_device)
+        torch.mps.manual_seed_all(seed)
+        print(x)
+    else:
+        print("MPS device not found.")
+
 hand_gesture_cnn = HandGestureCNN(nc=nc, ndf=ndf, num_classes=num_classes).to(device)
-hand_gesture_cnn.load_state_dict(torch.load('/Users/vale/Desktop/Sapienza/Vision/pth_folder/cnn_model.pth'))
+hand_gesture_cnn.load_state_dict(torch.load(pth), map_location=device)
 hand_gesture_cnn.eval()
+
+# Seed 
+torch.manual_seed(seed)
+np.random.seed(seed)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
 
 # Define the transformation
 transform = transforms.Compose([

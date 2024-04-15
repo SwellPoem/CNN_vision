@@ -9,7 +9,7 @@ import numpy as np
 from constants import *
 
 # # Create the dataloader
-dataloader = get_dataloader("/Users/vale/Desktop/Sapienza/Vision/hand_poses_dataset_CROP", batch_size)
+dataloader = get_dataloader(train_path, batch_size)
 
 # Device configuration
 device = torch.device("cuda" if torch.cuda.is_available() else "mps")  # Define the device for training
@@ -89,7 +89,7 @@ for epoch in range(num_epochs):
 
 # Save the CNN model
 print("Saving the CNN model")
-torch.save(netCNN.state_dict(), 'cnn_model_1.pth')
+torch.save(netCNN.state_dict(), pth)
 
 # Create a figure and axis
 fig, ax = plt.subplots()

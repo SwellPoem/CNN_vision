@@ -2,6 +2,7 @@ import torch
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 from tqdm import tqdm
+import numpy as np
 from cnn import HandGestureCNN
 from constants import *
 
@@ -15,7 +16,7 @@ transform = transforms.Compose([
 ])
 
 # Load the test dataset
-test_dataset = datasets.ImageFolder(root='hand_test_dataset_cnn', transform=transform)
+test_dataset = datasets.ImageFolder(root=test_path, transform=transform)
 test_dataloader = DataLoader(test_dataset, batch_size=32, shuffle=True)
 
 # Device configuration
@@ -31,14 +32,17 @@ else:
     else:
         print("MPS device not found.")
 
+# Seed 
+torch.manual_seed(seed)
+np.random.seed(seed)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
+
 # Initialize your CNN model
-num_classes = 18  # Define the number of classes
-nc = 3  # Number of channels in the training images. For color images, this is 3
-ndf = 64 
 model = HandGestureCNN(nc, ndf, num_classes).to(device)
 
 # Load the trained model
-model.load_state_dict(torch.load('cnn_model_1.pth', map_location=device))
+model.load_state_dict(torch.load(pth, map_location=device))
 model.eval()  # Set the model to evaluation mode
 
 def evaluate_model(model, dataloader, device):
