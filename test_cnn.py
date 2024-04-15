@@ -3,6 +3,8 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 from cnn import HandGestureCNN
+from constants import *
+
 
 # Define transformations
 transform = transforms.Compose([

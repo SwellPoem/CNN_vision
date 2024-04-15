@@ -4,43 +4,43 @@ from tqdm import tqdm
 from cnn import HandGestureCNN
 from dataset import HandPoseDataset, get_dataloader
 from torch.utils.data import random_split
-
-# Hyperparameters
-batch_size = 32
-nc = 3  # Number of channels in the training images. For color images this is 3
-ndf = 64  # Size of feature maps in the discriminator
-num_epochs = 5
-# num_epochs = 10
-lr = 0.0002
-beta1 = 0.5
-# beta1 = 0.7
-num_classes = 20
+from matplotlib import pyplot as plt
+import numpy as np
+from constants import *
 
 # # Create the dataloader
-dataloader = get_dataloader("train_dataset", batch_size)
+dataloader = get_dataloader("/home/smeds/Desktop/VisGAN/hand_poses_dataset_CROP", batch_size)
 
 # Device configuration
 device = torch.device("cuda" if torch.cuda.is_available() else "mps")  # Define the device for training
 
 if device.type == 'cuda':
     print(f'Device selected: {torch.cuda.get_device_name(0)}')
+    torch.cuda.manual_seed_all(seed)
 else:
     if torch.backends.mps.is_available():
         mps_device = torch.device("mps")
         x = torch.ones(1, device=mps_device)
+        torch.mps.manual_seed_all(seed)
         print(x)
     else:
         print("MPS device not found.")
+
+# Seed 
+torch.manual_seed(seed)
+np.random.seed(seed)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
 
 # Initialize the CNN model
 netCNN = HandGestureCNN(nc, ndf, num_classes).to(device)
 
 # Initialize CrossEntropyLoss function
 criterion = torch.nn.CrossEntropyLoss()
+# criterion = torch.nn.NLLLoss()
 
 # Setup Adam optimizer for the CNN
 optimizerCNN = optim.Adam(netCNN.parameters(), lr=lr, betas=(beta1, 0.999))
-
 
 # Training Loop
 
@@ -72,9 +72,12 @@ for epoch in range(num_epochs):
 
         # Print statistics
         losses.append(loss.item())
-        if i % 50 == 0:
+        if i == 100 :
             print('[%d/%d][%d/%d]\tLoss: %.4f'
                   % (epoch, num_epochs, i, len(dataloader), loss.item()))
+            i = 0
+        else:
+            i += 1
 
         # Update the progress bar
         progress_bar.set_postfix({'Loss': f'{loss.item():.4f}'})
@@ -86,4 +89,17 @@ for epoch in range(num_epochs):
 
 # Save the CNN model
 print("Saving the CNN model")
-torch.save(netCNN.state_dict(), 'cnn_model_1.pth')
+torch.save(netCNN.state_dict(), 'cnn_model.pth')
+
+# Create a figure and axis
+fig, ax = plt.subplots()
+
+# Plot the loss
+ax.plot(losses)
+
+# Set the labels
+ax.set_xlabel("Iteration")
+ax.set_ylabel("Loss")
+
+# Show the plot
+plt.show()
