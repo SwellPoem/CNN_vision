@@ -15,9 +15,9 @@ gesture_classes = ['dislike', 'fist', 'four', 'like', 'ok', 'one', 'palm', 'peac
 pth = 'cnn_model_1.pth'
 
 # yolo paths
-config_path = 'yolo_hand_detection_master/models/cross-hands.cfg'
-weights_path = 'yolo_hand_detection_master/models/cross-hands.weights'
+config_path = '/Users/vale/Desktop/Sapienza/Vision/yolo_hand_detection_master/models/cross-hands.cfg'
+weights_path = '/Users/vale/Desktop/Sapienza/Vision/yolo_hand_detection_master/models/cross-hands.weights'
 
 # dataset paths
-train_path = 'hand_poses_dataset_CROP/train'
-test_path = 'hand_test_dataset/test'
+train_path = '/Users/vale/Desktop/Sapienza/Vision/hand_poses_dataset_CROP'
+test_path = '/Users/vale/Desktop/Sapienza/Vision/hand_test_dataset'
