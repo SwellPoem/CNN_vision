@@ -1,11 +1,13 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from constants import *
 
 class HandGestureCNN(nn.Module):
-    def __init__(self, nc=3, ndf=64, num_classes=17):
+    def __init__(self, nc=nc, ndf=ndf, num_classes=num_classes):
         super(HandGestureCNN, self).__init__()
         self.conv_layers = nn.Sequential(
+            
             nn.Conv2d(nc, ndf, 4, stride=2, padding=1, bias=False),
             nn.BatchNorm2d(ndf),
             nn.ReLU(inplace=True),
