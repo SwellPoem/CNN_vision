@@ -9,8 +9,8 @@ from constants import *
 
 
 # Instantiate the YOLO detector
-yolo_config = 'yolo_hand_detection_master/models/cross-hands.cfg'
-yolo_weights = 'yolo_hand_detection_master/models/cross-hands.weights'
+yolo_config = '/Users/vale/Desktop/Sapienza/Vision/yolo_hand_detection_master/models/cross-hands.cfg'
+yolo_weights = '/Users/vale/Desktop/Sapienza/Vision/yolo_hand_detection_master/models/cross-hands.weights'
 yolo_labels = ['Hand']  # Assuming you have one class for 'Hand'
 yolo_size = 416  # The size parameter must match what was used during YOLO training
 yolo_detector = YOLO(yolo_config, yolo_weights, yolo_labels, size=yolo_size)

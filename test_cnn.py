@@ -38,7 +38,7 @@ ndf = 64
 model = HandGestureCNN(nc, ndf, num_classes).to(device)
 
 # Load the trained model
-model.load_state_dict(torch.load('cnn_model2.pth', map_location=device))
+model.load_state_dict(torch.load('cnn_model_1.pth', map_location=device))
 model.eval()  # Set the model to evaluation mode
 
 def evaluate_model(model, dataloader, device):
