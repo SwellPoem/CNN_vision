@@ -18,7 +18,7 @@ yolo_detector = YOLO(yolo_config, yolo_weights, yolo_labels, size=yolo_size)
 # Load your HandGestureCNN
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 hand_gesture_cnn = HandGestureCNN(nc=nc, ndf=ndf, num_classes=num_classes).to(device)
-hand_gesture_cnn.load_state_dict(torch.load('cnn_model.pth'))
+hand_gesture_cnn.load_state_dict(torch.load('/Users/vale/Desktop/Sapienza/Vision/pth_folder/cnn_model.pth'))
 hand_gesture_cnn.eval()
 
 # Define the transformation
