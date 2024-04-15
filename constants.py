@@ -12,7 +12,7 @@ seed = 2031998
 gesture_classes = ['dislike', 'fist', 'four', 'like', 'ok', 'one', 'palm', 'peace', 'three2']
 
 # pth
-pth = 'cnn_model_1.pth'
+pth = '/Users/vale/Desktop/Sapienza/Vision/pth_folder/cnn_model_1.pth'
 
 # yolo paths
 config_path = '/Users/vale/Desktop/Sapienza/Vision/yolo_hand_detection_master/models/cross-hands.cfg'
