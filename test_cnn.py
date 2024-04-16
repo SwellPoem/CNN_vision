@@ -7,7 +7,7 @@ from cnn import HandGestureCNN
 from constants import *
 
 
-# Define transformations
+#transformations
 transform = transforms.Compose([
     transforms.Resize(64),
     transforms.CenterCrop(64),
@@ -15,11 +15,11 @@ transform = transforms.Compose([
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
 ])
 
-# Load the test dataset
+#load test dataset
 test_dataset = datasets.ImageFolder(root=test_path, transform=transform)
 test_dataloader = DataLoader(test_dataset, batch_size=32, shuffle=True)
 
-# Device configuration
+#device configuration
 device = torch.device("cuda" if torch.cuda.is_available() else "mps")
 
 if device.type == 'cuda':
@@ -32,16 +32,16 @@ else:
     else:
         print("MPS device not found.")
 
-# Seed 
+#seed 
 torch.manual_seed(seed)
 np.random.seed(seed)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
-# Initialize your CNN model
+#CNN model
 model = HandGestureCNN(nc, ndf, num_classes).to(device)
 
-# Load the trained model
+#load pre-trained model
 model.load_state_dict(torch.load(pth, map_location=device))
 model.eval()  # Set the model to evaluation mode
 
@@ -61,5 +61,4 @@ def evaluate_model(model, dataloader, device):
     accuracy = 100 * correct / total
     print(f'Accuracy of the model on the test images: {accuracy:.2f}%')
 
-# Evaluate the model
 evaluate_model(model, test_dataloader, device)

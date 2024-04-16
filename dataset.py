@@ -12,7 +12,7 @@ class HandPoseDataset(Dataset):
         self.transform = transform
         self.image_files = [f for f in os.listdir(root_dir) if os.path.isfile(os.path.join(root_dir, f))]
 
-        # Print out some debug information
+        #print some debug information
         print(f"Loaded {len(self.image_files)} images from {root_dir}")
 
     def __len__(self):

@@ -45,19 +45,19 @@ class HandGestureCNN(nn.Module):
 
             nn.Flatten()
         )
-        self.fc1 = nn.Linear(ndf * 64, 256)  # First fully connected layer, increased size
-        self.fc2 = nn.Linear(256, 128)  # Additional fully connected layer
-        self.fc3 = nn.Linear(128, num_classes)  # Output layer
-        self.dropout = nn.Dropout(0.5)  # Dropout layer to prevent overfitting
+        self.fc1 = nn.Linear(ndf * 64, 256)  #first fully connected layer, increased size
+        self.fc2 = nn.Linear(256, 128)  #additional fully connected layer
+        self.fc3 = nn.Linear(128, num_classes)  #output layer
+        self.dropout = nn.Dropout(0.5)  #dropout layer to prevent overfitting
         # self.softmax = nn.Softmax(dim=1)
 
     def forward(self, x):
         x = self.conv_layers(x)
-        x = self.dropout(x)  # Apply dropout after convolutional layers
-        x = F.relu(self.fc1(x))  # Apply ReLU activation function
-        x = self.dropout(x)  # Apply dropout
-        x = F.relu(self.fc2(x))  # Apply ReLU activation function
-        x = self.fc3(x)  # No activation here, nn.CrossEntropyLoss will apply softmax
+        x = self.dropout(x)  #apply dropout after convolutional layers
+        x = F.relu(self.fc1(x))  #apply ReLU activation function
+        x = self.dropout(x)  #apply dropout
+        x = F.relu(self.fc2(x))  #apply ReLU activation function
+        x = self.fc3(x)  #no activation -> nn.CrossEntropyLoss will apply softmax
         # x = self.softmax(x)
         return x
 

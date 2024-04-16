@@ -1,23 +1,23 @@
-# Hyperparameters
+# hyperparameters
 batch_size = 32
-nc = 3  # Number of channels in the training images. For color images this is 3
-ndf = 64  # Size of feature maps in the discriminator
+nc = 3  #number of channels in the training images. For color images this is 3
+ndf = 64  #size of feature maps in the discriminator
 num_epochs = 5
 lr = 0.0002
 beta1 = 0.5
 num_classes = 9
 seed = 2031998
 
-# Gesture classes
+#gesture classes
 gesture_classes = ['dislike', 'fist', 'four', 'like', 'ok', 'one', 'palm', 'peace', 'three2']
 
-# pth
+#pth
 pth = '/Users/vale/Desktop/Sapienza/Vision/pth_folder/cnn_model_1.pth'
 
-# yolo paths
+#yolo paths
 config_path = '/Users/vale/Desktop/Sapienza/Vision/yolo_hand_detection_master/models/cross-hands.cfg'
 weights_path = '/Users/vale/Desktop/Sapienza/Vision/yolo_hand_detection_master/models/cross-hands.weights'
 
-# dataset paths
+#dataset paths
 train_path = '/Users/vale/Desktop/Sapienza/Vision/hand_poses_dataset_CROP'
 test_path = '/Users/vale/Desktop/Sapienza/Vision/hand_test_dataset'

@@ -4,7 +4,7 @@ import numpy as np
 from tqdm import tqdm
 import logging
 
-# Initialize logging
+#initialize logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def load_model(cfg_path, weights_path):
@@ -18,15 +18,15 @@ def expand_bounding_box(x, y, w, h, width, height, expansion_rate=0.05):
     new_w = int(w * (1 + expansion_rate))
     new_h = int(h * (1 + expansion_rate))
     
-    # Calculate the difference to adjust the top-left corner
+    #calculating the difference to adjust the top-left corner
     delta_w = new_w - w
     delta_h = new_h - h
     
-    # Adjust the top-left corner to keep the box centered
+    #adjusting the top-left corner to keep the box centered
     new_x = max(x - delta_w // 2, 0)
     new_y = max(y - delta_h // 2, 0)
     
-    # Ensure the new bounding box does not exceed image dimensions
+    #ensuring the new bounding box does not exceed image dimensions
     new_x = min(new_x, width - new_w)
     new_y = min(new_y, height - new_h)
     
@@ -52,31 +52,31 @@ def detect_and_crop(input_folder, output_folder, net):
                         scores = detection[5:]
                         class_id = np.argmax(scores)
                         confidence = scores[class_id]
-                        if confidence > 0.5:  # Filter out low-confidence detections
+                        if confidence > 0.5:  #to filter out low-confidence detections
                             center_x, center_y, w, h = (detection[0:4] * np.array([width, height, width, height])).astype('int')
                             x = int(center_x - w / 2)
                             y = int(center_y - h / 2)
 
-                            # Expand the bounding box
+                            #expand the bounding box
                             x, y, w, h = expand_bounding_box(x, y, w, h, width, height)
 
-                            # Ensure the bounding box is fully within the image dimensions
+                            #ensure the bounding box is fully within the image dimensions
                             x, y, w, h = max(x, 0), max(y, 0), min(w, width), min(h, height)
 
-                            # Check if the crop dimensions are valid
+                            #check if crop dimensions are valid
                             if w > 0 and h > 0:
                                 cropped_image = image[y:y+h, x:x+w]
 
-                                # Construct output path with unique names for multiple detections
+                                #construct output path with unique names for multiple detections
                                 base_name, ext = os.path.splitext(file)
                                 output_file = f"{base_name}_{x}_{y}{ext}"
                                 output_path = os.path.join(output_folder, os.path.relpath(root, input_folder), output_file)
 
-                                # Create directory structure if it doesn't exist
+                                #create directory structure if it doesn't exist
                                 if not os.path.exists(os.path.dirname(output_path)):
                                     os.makedirs(os.path.dirname(output_path))
 
-                                # Ensure cropped_image is not empty
+                                #ensure cropped_image is not empty
                                 if cropped_image.size > 0:
                                     cv2.imwrite(output_path, cropped_image)
                                     logging.info(f"Processed and saved hand crop: {output_path}")

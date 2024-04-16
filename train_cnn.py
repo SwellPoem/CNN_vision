@@ -8,10 +8,10 @@ from matplotlib import pyplot as plt
 import numpy as np
 from constants import *
 
-# # Create the dataloader
+#create the dataloader
 dataloader = get_dataloader(train_path, batch_size)
 
-# Device configuration
+#device configuration
 device = torch.device("cuda" if torch.cuda.is_available() else "mps")  # Define the device for training
 
 if device.type == 'cuda':
@@ -26,51 +26,47 @@ else:
     else:
         print("MPS device not found.")
 
-# Seed 
+#seed 
 torch.manual_seed(seed)
 np.random.seed(seed)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
-# Initialize the CNN model
+#CNN model
 netCNN = HandGestureCNN(nc, ndf, num_classes).to(device)
 
-# Initialize CrossEntropyLoss function
+#CrossEntropyLoss function
 criterion = torch.nn.CrossEntropyLoss()
-# criterion = torch.nn.NLLLoss()
 
-# Setup Adam optimizer for the CNN
+#Adam optimizer for the CNN
 optimizerCNN = optim.Adam(netCNN.parameters(), lr=lr, betas=(beta1, 0.999))
 
-# Training Loop
+######### Training Loop #########
 
-# Lists to keep track of progress
+#lists to keep track of progress
 losses = []
 iters = 0
 
 print("Starting Training Loop...")
-# For each epoch
 for epoch in range(num_epochs):
-    # Create a progress bar
+    #progress bar
     progress_bar = tqdm(enumerate(dataloader, 0), total=len(dataloader), desc=f"Epoch {epoch+1}/{num_epochs}")
 
-    # For each batch in the dataloader
+    #for each batch in the dataloader
     for i, data in progress_bar:
-        # Move the input data to the device
-        inputs, labels = data[0].to(device), data[1].to(device)
+        inputs, labels = data[0].to(device), data[1].to(device)     #move the input data to the device
 
-        # Zero the parameter gradients
-        optimizerCNN.zero_grad()
+        optimizerCNN.zero_grad()    #zero the parameter gradients
 
-        # Forward pass
+        ##### forward pass #####
         outputs = netCNN(inputs)
         loss = criterion(outputs, labels)
 
-        # Backward and optimize
+        ##### backward and optimize #####
         loss.backward()
         optimizerCNN.step()
 
-        # Print statistics
+        #statistics prints
         losses.append(loss.item())
         if i == 100 :
             print('[%d/%d][%d/%d]\tLoss: %.4f'
@@ -79,7 +75,6 @@ for epoch in range(num_epochs):
         else:
             i += 1
 
-        # Update the progress bar
         progress_bar.set_postfix({'Loss': f'{loss.item():.4f}'})
 
         iters += 1
@@ -87,19 +82,13 @@ for epoch in range(num_epochs):
     print("Epoch Finished")
     print(f"Loss: {loss.item():.4f}")
 
-# Save the CNN model
+#save the CNN model
 print("Saving the CNN model")
 torch.save(netCNN.state_dict(), pth)
 
-# Create a figure and axis
+#plot the loss
 fig, ax = plt.subplots()
-
-# Plot the loss
 ax.plot(losses)
-
-# Set the labels
 ax.set_xlabel("Iteration")
 ax.set_ylabel("Loss")
-
-# Show the plot
 plt.show()
