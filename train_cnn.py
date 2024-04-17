@@ -2,8 +2,7 @@ import torch
 import torch.optim as optim
 from tqdm import tqdm
 from cnn import HandGestureCNN
-from dataset import HandPoseDataset, get_dataloader
-from torch.utils.data import random_split
+from dataset import get_dataloader
 from matplotlib import pyplot as plt
 import numpy as np
 from constants import *
