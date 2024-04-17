@@ -17,21 +17,10 @@ yolo_size = 416  #the size parameter must match what was used during YOLO traini
 yolo_detector = YOLO(yolo_config, yolo_weights, yolo_labels, size=yolo_size)
 
 #HandGestureCNN
-device = torch.device('cuda' if torch.cuda.is_available() else 'mps')
-if device.type == 'cuda':
-    print(f'Device selected: {torch.cuda.get_device_name(0)}')
-    torch.cuda.manual_seed_all(seed)
-else:
-    if torch.backends.mps.is_available():
-        mps_device = torch.device("mps")
-        x = torch.ones(1, device=mps_device)
-        torch.mps.manual_seed_all(seed)
-        print(x)
-    else:
-        print("MPS device not found.")
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 hand_gesture_cnn = HandGestureCNN(nc=nc, ndf=ndf, num_classes=num_classes).to(device)
-hand_gesture_cnn.load_state_dict(torch.load(pth), map_location=device)
+hand_gesture_cnn.load_state_dict(torch.load(pth, map_location=torch.device('cpu')))
 hand_gesture_cnn.eval()
 
 #seed 
