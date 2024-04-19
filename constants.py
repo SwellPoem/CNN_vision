@@ -20,4 +20,4 @@ weights_path = 'yolo_hand_detection_master/models/cross-hands.weights'
 
 #dataset paths
 train_path = '/Users/vale/Desktop/Sapienza/Vision/hand_poses_dataset_CROP'
-test_path = '/Users/vale/Desktop/Sapienza/Vision/hand_test_dataset'
+test_path = '/Users/vale/Desktop/Sapienza/Vision/hand_test_dataset_CROP'

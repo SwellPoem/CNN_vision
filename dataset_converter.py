@@ -91,8 +91,8 @@ def main(input_folder, output_folder, cfg_path, weights_path):
     logging.info("Completed processing all images.")
 
 if __name__ == "__main__":
-    input_folder = "/Users/vale/Desktop/Sapienza/Vision/hand_poses_dataset"
-    output_folder = "/Users/vale/Desktop/Sapienza/Vision/hand_poses_dataset_CROP"
+    input_folder = "/Users/vale/Desktop/Sapienza/Vision/hand_test_dataset"
+    output_folder = "/Users/vale/Desktop/Sapienza/Vision/hand_test_dataset_CROP"
     cfg_path = "/Users/vale/Desktop/Sapienza/Vision/yolo_hand_detection_master/models/cross-hands.cfg"
     weights_path = "/Users/vale/Desktop/Sapienza/Vision/yolo_hand_detection_master/models/cross-hands.weights"
     main(input_folder, output_folder, cfg_path, weights_path)
