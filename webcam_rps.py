@@ -49,8 +49,12 @@ window = QMainWindow()
 central_widget = QWidget()
 layout = QVBoxLayout()
 
+greeting_label = QLabel("Get ready to play!")
 countdown_label = QLabel()
 random_choice_label = QLabel()
+greeting_label.setStyleSheet("font-size: 20px;")
+countdown_label.setStyleSheet("font-size: 15px;")
+layout.addWidget(greeting_label)
 layout.addWidget(countdown_label)
 layout.addWidget(random_choice_label)
 
@@ -61,7 +65,7 @@ def start_game():
     global game_started
     game_started = True
     update_countdown(3)
-    QTimer.singleShot(3000, update_random_choice)  # update random choice after 3 seconds
+    QTimer.singleShot(3000, update_random_choice)
     start_button.setEnabled(False)
 
 def reset_game():
@@ -72,8 +76,14 @@ def reset_game():
     winner_label.setText("")
     start_button.setEnabled(True)
 
-start_button = QPushButton("Start", clicked=start_game)
-reset_button = QPushButton("Reset", clicked=reset_game)
+start_button = QPushButton("Start")
+start_button.setStyleSheet("background-color: green; color: white; font-size: 20px;")  # green background, white text, 20px font
+start_button.clicked.connect(start_game)
+
+reset_button = QPushButton("Reset")
+reset_button.setStyleSheet("background-color: red; color: white; font-size: 20px;")  # red background, white text, 20px font
+reset_button.clicked.connect(reset_game)
+
 layout.addWidget(start_button)
 layout.addWidget(reset_button)
 
@@ -93,6 +103,7 @@ def update_countdown(i):
         start_button.setEnabled(False)
 
 winner_label = QLabel()
+winner_label.setStyleSheet("font-size: 20px;")
 layout.addWidget(winner_label)
 
 def update_random_choice():
