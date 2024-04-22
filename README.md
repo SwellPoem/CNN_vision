@@ -18,6 +18,6 @@ The CNN is used to perform real-time hand gesture recognition usign a webcam.
 The objective is achieved by the use of: a pre-trained YOLO (You Only Look Once) model for hand detection and the custom CNN for hand gesture classification.
 
 ## Additional Stuff
-- **Rock Paper Scissors Game:** A variant of the simple real-time gesture recognition with the webcam. The user can play 'Rock, paper, scissors' against the network with a simple intereface.
+- **Rock Paper Scissors Game:** A variant of the simple real-time gesture recognition with the webcam. The user can play 'Rock, Paper, Scissors' against the network with a simple intereface.
 
 - **TO DO: ASL detection**
