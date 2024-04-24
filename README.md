@@ -12,6 +12,7 @@ This project develops a Convolutional Neural Network (CNN) designed to recognize
 - Python
 - PyTorch
 - OpenCV
+- YOLO
 
 ## Webcam
 The CNN is used to perform real-time hand gesture recognition usign a webcam. 
