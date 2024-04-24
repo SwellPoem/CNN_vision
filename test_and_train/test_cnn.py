@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 import numpy as np
 from cnn import HandGestureCNN
-from constants import *
+from utils.constants import *
 
 
 #transformations

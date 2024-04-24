@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from constants import *
+from utils.constants import *
 
 class HandGestureCNN(nn.Module):
     def __init__(self, nc=nc, ndf=ndf, num_classes=num_classes):

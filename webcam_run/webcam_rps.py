@@ -6,12 +6,8 @@ import torch
 import numpy as np
 from yolo_hand_detection_master.yolo import YOLO
 from cnn import HandGestureCNN
-from constants import *
+from utils.constants import *
 import random
-import time
-import tkinter as tk
-from tkinter import StringVar
-import threading
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QVBoxLayout, QWidget
 from PyQt5.QtCore import QTimer
 

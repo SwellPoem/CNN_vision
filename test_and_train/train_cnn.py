@@ -2,10 +2,10 @@ import torch
 import torch.optim as optim
 from tqdm import tqdm
 from cnn import HandGestureCNN
-from dataset import get_dataloader
+from utils.dataset import get_dataloader
 from matplotlib import pyplot as plt
 import numpy as np
-from constants import *
+from utils.constants import *
 
 #create the dataloader
 dataloader = get_dataloader(train_path, batch_size)
@@ -93,4 +93,6 @@ fig, ax = plt.subplots()
 ax.plot(range(1, num_epochs + 1), avg_losses_per_epoch)
 ax.set_xlabel("Epoch")
 ax.set_ylabel("Average Loss")
+print("Saving the loss plot")
+plt.savefig('/Users/vale/Desktop/Sapienza/Vision/images/loss_plot_rps_2.png')
 plt.show()

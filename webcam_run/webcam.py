@@ -6,7 +6,7 @@ import torch
 import numpy as np
 from yolo_hand_detection_master.yolo import YOLO
 from cnn import HandGestureCNN
-from constants import *
+from utils.constants import *
 
 
 #YOLO detector
@@ -115,91 +115,3 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
-
-
-# import cv2
-# import mediapipe as mp
-# from mediapipe.tasks import python
-# from mediapipe.tasks.python import vision
-# from mediapipe import solutions
-# from mediapipe.framework.formats import landmark_pb2
-# import numpy as np
-
-# MARGIN = 10  # pixels
-# FONT_SIZE = 1
-# FONT_THICKNESS = 1
-# HANDEDNESS_TEXT_COLOR = (88, 205, 54) # vibrant green
-
-# # Create an HandLandmarker object.
-# base_options = python.BaseOptions(model_asset_path='/Users/vale/Desktop/Sapienza/Vision/hand_landmarker.task')
-# options = vision.HandLandmarkerOptions(base_options=base_options, num_hands=2)
-# detector = vision.HandLandmarker.create_from_options(options)
-
-# def draw_landmarks_on_image(rgb_image, detection_result):
-#   hand_landmarks_list = detection_result.hand_landmarks
-#   handedness_list = detection_result.handedness
-#   annotated_image = np.copy(rgb_image)
-
-#   # Loop through the detected hands to visualize.
-#   for idx in range(len(hand_landmarks_list)):
-#     hand_landmarks = hand_landmarks_list[idx]
-#     handedness = handedness_list[idx]
-
-#     # Draw the hand landmarks.
-#     hand_landmarks_proto = landmark_pb2.NormalizedLandmarkList()
-#     hand_landmarks_proto.landmark.extend([
-#       landmark_pb2.NormalizedLandmark(x=landmark.x, y=landmark.y, z=landmark.z) for landmark in hand_landmarks
-#     ])
-#     solutions.drawing_utils.draw_landmarks(
-#       annotated_image,
-#       hand_landmarks_proto,
-#       solutions.hands.HAND_CONNECTIONS,
-#       solutions.drawing_styles.get_default_hand_landmarks_style(),
-#       solutions.drawing_styles.get_default_hand_connections_style())
-
-#     # Get the top left corner of the detected hand's bounding box.
-#     height, width, _ = annotated_image.shape
-#     x_coordinates = [landmark.x for landmark in hand_landmarks]
-#     y_coordinates = [landmark.y for landmark in hand_landmarks]
-#     text_x = int(min(x_coordinates) * width)
-#     text_y = int(min(y_coordinates) * height) - MARGIN
-
-#     # Draw handedness (left or right hand) on the image.
-#     cv2.putText(annotated_image, f"{handedness[0].category_name}",
-#                 (text_x, text_y), cv2.FONT_HERSHEY_DUPLEX,
-#                 FONT_SIZE, HANDEDNESS_TEXT_COLOR, FONT_THICKNESS, cv2.LINE_AA)
-
-#   return annotated_image
-
-# # Initialize the webcam feed.
-# cap = cv2.VideoCapture(0)
-
-# # Main loop.
-# while True:
-#     # Capture frame-by-frame.
-#     ret, frame = cap.read()
-#     if not ret:
-#         break
-
-#     # Convert the BGR image to RGB.
-#     rgb_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-
-#     # Create a MediaPipe Image object from the RGB image.
-#     image = mp.Image.create_from_np(rgb_image)
-
-#     # Detect hand landmarks from the input image.
-#     detection_result = detector.detect(image)
-
-#     # Process the classification result. In this case, visualize it.
-#     annotated_image = draw_landmarks_on_image(image.numpy_view(), detection_result)
-
-#     # Display the resulting frame.
-#     cv2.imshow('Webcam Feed', cv2.cvtColor(annotated_image, cv2.COLOR_RGB2BGR))
-
-#     # Break the loop on 'q' key press.
-#     if cv2.waitKey(1) & 0xFF == ord('q'):
-#         break
-
-# # When everything is done, release the capture.
-# cap.release()
-# cv2.destroyAllWindows()
