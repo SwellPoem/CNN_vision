@@ -1,6 +1,6 @@
 from torchsummary import summary
 from cnn import HandGestureCNN
-from constants import *
+from utils.constants import *
 import torch.nn as nn
 import torch.nn.functional as F
 from torchsummary import summary
@@ -13,7 +13,7 @@ model = HandGestureCNN()
 summary(model, input_size=(nc, 64, 64))
 
 
-# # Create a dummy input
+# # Create a dummy input 
 # input = torch.randn(2, nc, 64, 64).unsqueeze(0)
 
 # # Forward pass through the model
