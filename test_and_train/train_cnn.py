@@ -72,8 +72,6 @@ for epoch in range(num_epochs):
             print('[%d/%d][%d/%d]\tLoss: %.4f'
                   % (epoch, num_epochs, i, len(dataloader), loss.item()))
             i = 0
-        else:
-            i += 1
 
         progress_bar.set_postfix({'Loss': f'{loss.item():.4f}'})
 
@@ -94,5 +92,5 @@ ax.plot(range(1, num_epochs + 1), avg_losses_per_epoch)
 ax.set_xlabel("Epoch")
 ax.set_ylabel("Average Loss")
 print("Saving the loss plot")
-plt.savefig('/Users/vale/Desktop/Sapienza/Vision/images/loss_plot_rps_2.png')
+plt.savefig('/Users/vale/Desktop/Sapienza/Vision/images/loss_plot_asl_2.png')
 plt.show()

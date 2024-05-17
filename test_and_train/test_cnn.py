@@ -46,16 +46,16 @@ model = HandGestureCNN(nc, ndf, num_classes).to(device)
 
 #load pre-trained model
 model.load_state_dict(torch.load(pth, map_location=device))
-model.eval()  # Set the model to evaluation mode
+model.eval()  #set the model to evaluation mode
 
-def evaluate_model(model, dataloader, device):
+def evaluate_model(model, dataloader, device, class_names):
     print("Starting test process...")
     correct = 0
     total = 0
     all_labels = []
     all_predictions = []
     progress_bar = tqdm(dataloader, desc="Testing")
-    with torch.no_grad():  # No need to track gradients during evaluation
+    with torch.no_grad():  #no need to track gradients during evaluation
         for images, labels in progress_bar:
             images, labels = images.to(device), labels.to(device)
             outputs = model(images)
@@ -68,15 +68,21 @@ def evaluate_model(model, dataloader, device):
     accuracy = 100 * correct / total
     print(f'Accuracy of the model on the test images: {accuracy:.2f}%')
 
-    # Compute confusion matrix
+    #confusion matrix computation
     cm = confusion_matrix(all_labels, all_predictions)
+
+    #normalize
+    cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+
     plt.figure(figsize=(10, 10))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Oranges')
+    sns.heatmap(cm, annot=True, fmt='.1f', cmap='Oranges', xticklabels=class_names, yticklabels=class_names)
     plt.xlabel('Predicted')
     plt.ylabel('True')
     plt.title('Confusion matrix')
-    plt.savefig('confusion_matrix_classes.png')
+    plt.savefig('confusion_matrix.png')
     plt.show()
 
-evaluate_model(model, test_dataloader, device)
+class_names = test_dataset.classes
+
+evaluate_model(model, test_dataloader, device, class_names)
 
