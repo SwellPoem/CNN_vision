@@ -1,9 +1,9 @@
 import cv2
 import mediapipe as mp
 import torch
+import numpy as np
 from torchvision import transforms
 from PIL import Image
-import numpy as np
 from yolo_hand_detection_master.yolo import YOLO
 from cnn import HandGestureCNN
 from utils.constants import *

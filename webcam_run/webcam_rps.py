@@ -1,13 +1,13 @@
 import cv2
 import torch
-from torchvision import transforms
 import mediapipe as mp
-from PIL import Image
 import numpy as np
+import random
+from torchvision import transforms
+from PIL import Image
 from yolo_hand_detection_master.yolo import YOLO
 from cnn import HandGestureCNN
 from utils.constants import *
-import random
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QVBoxLayout, QWidget
 from PyQt5.QtCore import QTimer
 

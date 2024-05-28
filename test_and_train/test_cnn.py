@@ -1,13 +1,13 @@
 import torch
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 from tqdm import tqdm
-import numpy as np
 from cnn import HandGestureCNN
 from utils.constants import *
-import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
-import seaborn as sns
 
 
 #transformations

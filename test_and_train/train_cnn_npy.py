@@ -1,10 +1,10 @@
 import torch
 import torch.optim as optim
+import numpy as np
 from tqdm import tqdm
 from cnn import HandGestureCNN
 from utils.dataset_npy import get_dataloader
 from matplotlib import pyplot as plt
-import numpy as np
 from utils.constants import *
 
 #create the dataloader

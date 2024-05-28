@@ -1,10 +1,10 @@
+import torch.nn as nn
+import torch.nn.functional as F
+import torch
 from torchsummary import summary
 from cnn import HandGestureCNN
 from utils.constants import *
-import torch.nn as nn
-import torch.nn.functional as F
 from torchsummary import summary
-import torch
 from torchviz import make_dot
 
 #instantiate the model

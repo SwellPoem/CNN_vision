@@ -1,8 +1,8 @@
 import cv2
 import os
 import numpy as np
-from tqdm import tqdm
 import logging
+from tqdm import tqdm
 from random import randint
 from albumentations import RandomBrightnessContrast, Rotate, RandomResizedCrop, GaussianBlur
 from imgaug import augmenters as iaa
