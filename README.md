@@ -23,7 +23,8 @@ The objective is achieved by the use of: MediaPipe Hand Landmarker for hand land
 - **Rock Paper Scissors Game:** A variant of the simple real-time gesture recognition with the webcam. The user can play 'Rock, Paper, Scissors' against the network with a simple intereface.
 
 ## How to run
-To run the simple hand detection with the webcam:
 - Download the repo
 - Locate in the folder of the download
-- In the terminal use the command ``` python -m webcam_run.webcam_mediapipe ```
+- To run the simple hand detection with the webcam: in the terminal use the command ``` python -m webcam_run.webcam_mediapipe ```
+
+- To run the Rock, Paper, Scissors game: in the terminal use the command ``` python -m webcam_run.webcam_rps ```
