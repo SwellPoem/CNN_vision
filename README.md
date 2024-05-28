@@ -9,7 +9,7 @@ This project develops a Convolutional Neural Network (CNN) designed to recognize
 - **Training Process:** The model was trained using an 80-20 split for training and test, over 5 epochs, employing the Adam optimizer and crossentropy as the loss function. First the dataset was passed over to a pre-trained YOLO model for hand detection, in order to identify and crop all the detected hands in the images, and then the actual training of the HandGesture CNN was performed on the cropped dataset. The accuracy reached after the test process is of 95.36%.
 
 ## Technologies Used
-- Python
+- Python 3.12
 - PyTorch
 - OpenCV
 - YOLO
@@ -21,3 +21,12 @@ The objective is achieved by the use of: MediaPipe Hand Landmarker for hand land
 
 ## Additional Stuff
 - **Rock Paper Scissors Game:** A variant of the simple real-time gesture recognition with the webcam. The user can play 'Rock, Paper, Scissors' against the network with a simple intereface.
+
+## How to run
+To run the simple hand detection with the webcam:
+- Download the repo
+- Locate in the folder of the download
+- In the terminal use the command
+```
+python -m webcam_run.webcam_mediapipe
+```
