@@ -5,7 +5,6 @@ import numpy as np
 import random
 from torchvision import transforms
 from PIL import Image
-from yolo_hand_detection_master.yolo import YOLO
 from cnn import HandGestureCNN
 from utils.constants import *
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QVBoxLayout, QWidget
