@@ -13,12 +13,11 @@ This project develops a Convolutional Neural Network (CNN) designed to recognize
 - PyTorch
 - OpenCV
 - YOLO
+- Mediapipe
 
 ## Webcam
 The CNN is used to perform real-time hand gesture recognition usign a webcam. 
-The objective is achieved by the use of: the pre-trained YOLO model for hand detection and the custom CNN for hand gesture classification.
+The objective is achieved by the use of: MediaPipe Hand Landmarker for hand landmarks detection and the custom CNN for hand gesture classification.
 
 ## Additional Stuff
 - **Rock Paper Scissors Game:** A variant of the simple real-time gesture recognition with the webcam. The user can play 'Rock, Paper, Scissors' against the network with a simple intereface.
-
-- **TO DO: ASL detection**
