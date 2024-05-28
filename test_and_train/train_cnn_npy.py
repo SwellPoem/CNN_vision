@@ -2,7 +2,7 @@ import torch
 import torch.optim as optim
 from tqdm import tqdm
 from cnn import HandGestureCNN
-from utils.dataset import get_dataloader
+from utils.dataset_npy import get_dataloader
 from matplotlib import pyplot as plt
 import numpy as np
 from utils.constants import *

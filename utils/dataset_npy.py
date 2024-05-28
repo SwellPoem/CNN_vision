@@ -10,7 +10,6 @@ class HandPoseDataset(Dataset):
     def __init__(self, root_dir, transform=None):
         self.root_dir = root_dir
         self.transform = transform
-        # self.image_files = [f for f in os.listdir(root_dir) if os.path.isfile(os.path.join(root_dir, f))]
         self.image_files = []
         for subdir, dirs, files in os.walk(root_dir):
             for file in files:
@@ -20,15 +19,15 @@ class HandPoseDataset(Dataset):
         #print some debug information
         print(f"Loaded {len(self.image_files)} images from {root_dir}")
 
-
     def __len__(self):
         return len(self.image_files)
 
     def __getitem__(self, idx):
-        img_name = os.path.join(self.root_dir, self.image_files[idx])
-        image = Image.open(img_name)
+        img_name = self.image_files[idx]
+        image = Image.open(img_name).convert('RGB')
         if self.transform:
             image = self.transform(image)
+        image = image.unsqueeze(0)  # Add channel dimension
         return image
 
 transform = transforms.Compose([
@@ -44,10 +43,9 @@ def get_dataloader(root_dir, batch_size=32, transform=None):
             transforms.Resize(64),
             transforms.CenterCrop(64),
             transforms.ToTensor(),
-            transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+            transforms.Normalize((0.5,), (0.5,)),
         ])
     
-    dataset = datasets.ImageFolder(root=root_dir, transform=transform)
+    dataset = HandPoseDataset(root_dir=root_dir, transform=transform)
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
     return dataloader
-
