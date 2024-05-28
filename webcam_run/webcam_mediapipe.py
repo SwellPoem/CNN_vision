@@ -34,7 +34,7 @@ transform = transforms.Compose([
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
 ])
 
-# Webcam initialization
+# webcam initialization
 cap = cv2.VideoCapture(0)
 
 # Main loop
@@ -43,51 +43,51 @@ while True:
     if not ret:
         break
 
-    # Convert the BGR image to RGB and process it with MediaPipe Hands
+    # convert the BGR image to RGB and process it with MediaPipe Hands
     results = hands.process(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
 
-    # Draw hand landmarks for each detected hand
+    # draw hand landmarks
     if results.multi_hand_landmarks:
         for hand_landmarks in results.multi_hand_landmarks:
             mp_drawing.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
 
-            # Get bounding box coordinates around the hand
+            # get bounding box coordinates around the hand
             hand_landmarks_array = np.array([[landmark.x, landmark.y] for landmark in hand_landmarks.landmark])
             x_min, y_min = hand_landmarks_array.min(axis=0)
             x_max, y_max = hand_landmarks_array.max(axis=0)
 
-            # Convert relative coordinates to absolute coordinates
+            # convert relative coordinates to absolute coordinates
             h, w, _ = frame.shape
             x_min_abs, x_max_abs = x_min * w, x_max * w
             y_min_abs, y_max_abs = y_min * h, y_max * h
             
-            # Expand bounding box by 5%
+            # expand bounding box by 5%
             x_min_abs = max(0, x_min_abs - 0.05 * w)
             y_min_abs = max(0, y_min_abs - 0.05 * h)
             x_max_abs = min(w, x_max_abs + 0.05 * w)
             y_max_abs = min(h, y_max_abs + 0.05 * h)
 
-            # Draw bounding box around the detected hand
+            # draw bounding box
             cv2.rectangle(frame, (int(x_min_abs), int(y_min_abs)), (int(x_max_abs), int(y_max_abs)), (0, 255, 0), 2)
 
-            # Crop detected hand
+            # crop detected hand
             cropped_hand = frame[int(y_min_abs):int(y_max_abs), int(x_min_abs):int(x_max_abs)]
 
-            # Preprocess the cropped hand for HandGestureCNN
+            # preprocess for HandGestureCNN
             # preprocessed_hand = cv2.resize(cropped_hand, (64, 64))
             cropped_hand_pil = Image.fromarray(cropped_hand)
             preprocessed_hand = transform(cropped_hand_pil)
             # preprocessed_hand = torch.from_numpy(preprocessed_hand).float().permute(2, 0, 1).unsqueeze(0).to(device)
             preprocessed_hand = preprocessed_hand.unsqueeze(0).to(device)
 
-            # Run CNN inference to classify the gesture
+            # classify the gesture
             with torch.no_grad():
                 prediction = hand_gesture_cnn(preprocessed_hand)
                 max_value, predicted_idx = torch.max(prediction, 1)
                 if max_value.item() > 0.3:  #threshold
                     gesture = gesture_classes[predicted_idx.item()]
 
-            # Draw label with gesture
+            
             text = f"Hand: {gesture}"
             cv2.putText(frame, text, (int(x_min_abs), int(y_min_abs - 10)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
 
@@ -158,7 +158,7 @@ while True:
 #             text = f"Hand: {gesture}"
 #             cv2.putText(frame, text, (x_min, y_min - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 255), 2)
 
-    # Show frame
+
     cv2.imshow('Webcam Feed', frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
