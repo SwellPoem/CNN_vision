@@ -26,7 +26,6 @@ The objective is achieved by the use of: MediaPipe Hand Landmarker for hand land
 To run the simple hand detection with the webcam:
 - Download the repo
 - Locate in the folder of the download
-- In the terminal use the command
-```
+- In the terminal use the command```
 python -m webcam_run.webcam_mediapipe
 ```
