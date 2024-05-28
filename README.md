@@ -28,20 +28,20 @@ The objective is achieved by the use of: MediaPipe Hand Landmarker for hand land
     ├── readme_images
     │    └── image
     ├── test_and_train
-    |    ├── test_cnn.py
-    |    ├── train_cnn_npy.py
+    │    ├── test_cnn.py
+    │    ├── train_cnn_npy.py
     │    └── train_cnn.py
     ├── utils
     │    ├── constants.py
     │    ├── dataset_augment
     │    ├── dataset_converter.py
     │    ├── dataset_npy.py
-    |    ├── dataset.py
-    |    ├── model.py
+    │    ├── dataset.py
+    │    ├── model.py
     │    └── preprocess.py
     ├── webcam_run
     │    ├── webcam_mediapipe.py
-    |    ├── webcam_rps.py
+    │    ├── webcam_rps.py
     │    └── webcam.py
     ├── .gitignore
     ├── cnn.py
