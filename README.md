@@ -23,7 +23,7 @@ The objective is achieved by the use of: MediaPipe Hand Landmarker for hand land
 - **Rock Paper Scissors Game:** A variant of the simple real-time gesture recognition with the webcam. The user can play 'Rock, Paper, Scissors' against the network with a simple intereface.
 
 ## Structure
-
+``` bash
 ├── CNN_vision
     ├── readme_images
     │    └── image
@@ -46,6 +46,7 @@ The objective is achieved by the use of: MediaPipe Hand Landmarker for hand land
     ├── .gitignore
     ├── cnn.py
     └── README.MD
+```
 
 ## How to run
 - Download the repo
