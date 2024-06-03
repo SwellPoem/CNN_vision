@@ -6,21 +6,20 @@ num_epochs = 5
 lr = 0.0002
 beta1 = 0.5
 # num_classes = 9
-# num_classes = 24
-num_classes = 3
+num_classes = 24
+# num_classes = 3
 seed = 2031998
 
 #gesture classes
 # gesture_classes = ['dislike', 'fist', 'four', 'like', 'ok', 'one', 'palm', 'peace', 'three2']
-# gesture_classes = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y']
-# gesture_classes = ['A', 'B', 'C', 'D']
-gesture_classes = ['paper', 'rock', 'scissors']
+gesture_classes = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y']
+# gesture_classes = ['paper', 'rock', 'scissors']
 
 #pth
 # pth = '/Users/vale/Desktop/Sapienza/Vision/pth_folder/cnn_model_1.pth'      #funziona anche con mediapipe -> some problems fist
-pth = '/Users/vale/Desktop/Sapienza/Vision/pth_folder/cnn_model_rps.pth'        #funziona anche con mediapipe
-# pth = '/Users/vale/Desktop/Sapienza/Vision/pth_folder/cnn_model_rps_mediapipe1.pth'       #non funziona
-# pth = '/Users/vale/Desktop/Sapienza/Vision/pth_folder/cnn_model_asl_dataset_mediapipe.pth'
+# pth = '/Users/vale/Desktop/Sapienza/Vision/pth_folder/cnn_model_rps.pth'        #funziona anche con mediapipe
+
+pth = '/Users/vale/Desktop/Sapienza/Vision/pth_folder/cnn_model_asl_dataset_augmented.pth'
 
 
 #yolo paths
@@ -32,8 +31,7 @@ weights_path = 'yolo_hand_detection_master/models/cross-hands.weights'
 
 # train_path = '/Users/vale/Desktop/Sapienza/Vision/Gestures&RPS/hand_poses_dataset_mediapipe_rps1'    #3 classes
 
-# train_path = '/Users/vale/Desktop/Sapienza/Vision/American_Sign_Language_Letters_aug/train'
-train_path = '/Users/vale/Desktop/Sapienza/Vision/ASL/ASL_prova/Train'
+train_path = '/Users/vale/Desktop/Sapienza/Vision/ASL/ASL_Dataset_part_AUGMENTED/Train'
 
 
 # test_path = '/Users/vale/Desktop/Sapienza/Vision/Gestures&RPS/hand_test_dataset_CROP'  #9 classes
