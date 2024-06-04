@@ -1,3 +1,6 @@
+#Description:
+#This script evaluates the trained CNN model on the test dataset and computes the confusion matrix.
+
 import torch
 import numpy as np
 import seaborn as sns

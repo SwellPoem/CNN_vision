@@ -1,3 +1,7 @@
+# Description:
+#This script uses the webcam to detect hand gestures using the MediaPipe Hands model
+#and classifies them using the HandGestureCNN model.
+
 import cv2
 import mediapipe as mp
 import torch

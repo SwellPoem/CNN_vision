@@ -1,3 +1,6 @@
+# Description:
+#This script preprocesses the hand poses dataset by adding landmarks to the images.
+
 import cv2
 import mediapipe as mp
 import numpy as np
@@ -15,7 +18,7 @@ def preprocess_dataset(dataset_path, output_path):
     output_path.mkdir(parents=True, exist_ok=True)
 
     img_paths = list(dataset_path.glob('**/*.png')) + list(dataset_path.glob('**/*.jpg')) + list(dataset_path.glob('**/*.jpeg'))
-    pbar = tqdm(total=len(img_paths), desc="Processing images")  # initialize progress bar
+    pbar = tqdm(total=len(img_paths), desc="Processing images")
     for img_path in img_paths:
         img = cv2.imread(str(img_path))
         results = hands.process(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
@@ -29,8 +32,8 @@ def preprocess_dataset(dataset_path, output_path):
             output_file_path.parent.mkdir(parents=True, exist_ok=True)  # create subdirectories if they don't exist
             cv2.imwrite(str(output_file_path), img)
         
-        pbar.update(1)  # update progress bar
+        pbar.update(1)
 
-    pbar.close()  # close progress bar
+    pbar.close()
 
-preprocess_dataset("/Users/vale/Downloads/asl", "/Users/vale/Desktop/ASL_images")
+preprocess_dataset("/Users/vale/Desktop/Sapienza/Vision/Gestures&RPS/hand_poses_dataset_CROP", "/Users/vale/Desktop/Sapienza/Vision/Gestures&RPS/hand_poses_dataset_mediapipe")

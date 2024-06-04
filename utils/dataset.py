@@ -1,3 +1,6 @@
+# Description:
+#This file contains the dataset class for the handpose dataset
+
 import torch
 import os
 from torch.utils.data import Dataset, DataLoader
@@ -10,14 +13,13 @@ class HandPoseDataset(Dataset):
     def __init__(self, root_dir, transform=None):
         self.root_dir = root_dir
         self.transform = transform
-        # self.image_files = [f for f in os.listdir(root_dir) if os.path.isfile(os.path.join(root_dir, f))]
         self.image_files = []
         for subdir, dirs, files in os.walk(root_dir):
             for file in files:
                 if not file.startswith('.DS_Store'):
                     self.image_files.append(os.path.join(subdir, file))
 
-        #print some debug information
+        #debug information
         print(f"Loaded {len(self.image_files)} images from {root_dir}")
 
 

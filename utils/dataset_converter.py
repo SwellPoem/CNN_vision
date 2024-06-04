@@ -1,3 +1,6 @@
+# Description:
+#This script is used to crop hands from images using YOLOv3 model.
+
 import cv2
 import os
 import numpy as np
@@ -91,8 +94,8 @@ def main(input_folder, output_folder, cfg_path, weights_path):
     logging.info("Completed processing all images.")
 
 if __name__ == "__main__":
-    input_folder = "/Users/vale/Desktop/half_ASL"
-    output_folder = "/Users/vale/Desktop/half_ASL_crop"
+    input_folder = ""
+    output_folder = ""
     cfg_path = "/Users/vale/Desktop/Sapienza/Vision/CNN_vision/yolo_hand_detection_master/models/cross-hands.cfg"
     weights_path = "/Users/vale/Desktop/Sapienza/Vision/CNN_vision/yolo_hand_detection_master/models/cross-hands.weights"
     main(input_folder, output_folder, cfg_path, weights_path)

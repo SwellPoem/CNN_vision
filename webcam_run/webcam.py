@@ -1,3 +1,8 @@
+# Description: 
+#This script runs the webcam feed and performs hand detection using YOLO 
+#and gesture classification using HandGestureCNN.
+#slow framerate
+
 import cv2
 import torch
 import numpy as np

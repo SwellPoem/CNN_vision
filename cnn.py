@@ -1,3 +1,6 @@
+# Description:
+#This file contains the CNN model for hand gesture recognition.
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -49,7 +52,6 @@ class HandGestureCNN(nn.Module):
         self.fc2 = nn.Linear(256, 128)  #additional fully connected layer
         self.fc3 = nn.Linear(128, num_classes)  #output layer
         self.dropout = nn.Dropout(0.5)  #dropout layer to prevent overfitting
-        # self.softmax = nn.Softmax(dim=1)
 
     def forward(self, x):
         x = self.conv_layers(x)
@@ -58,6 +60,5 @@ class HandGestureCNN(nn.Module):
         x = self.dropout(x)  #apply dropout
         x = F.relu(self.fc2(x))  #apply ReLU activation function
         x = self.fc3(x)  #no activation -> nn.CrossEntropyLoss will apply softmax
-        # x = self.softmax(x)
         return x
 

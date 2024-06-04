@@ -1,3 +1,10 @@
+#Description: This script runs a Rock-Paper-Scissors game using the webcam feed.
+#The user plays against the computer, which randomly selects a gesture.
+#The user's gesture is determined by the hand gesture classification model.
+#The game starts when the user presses the "Start" button and ends after 3 seconds
+#when the user's gesture is classified and the winner is determined.
+#The user can reset the game by pressing the "Reset" button.
+
 import cv2
 import torch
 import mediapipe as mp

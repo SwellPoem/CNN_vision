@@ -1,3 +1,5 @@
+# Description: This script trains the CNN model on the dataset.
+
 import torch
 import torch.optim as optim
 import numpy as np
@@ -92,5 +94,5 @@ ax.plot(range(1, num_epochs + 1), avg_losses_per_epoch)
 ax.set_xlabel("Epoch")
 ax.set_ylabel("Average Loss")
 print("Saving the loss plot")
-plt.savefig('/Users/vale/Desktop/Sapienza/Vision/images/loss_plot_asl_augmented.png')
+plt.savefig('/Users/vale/Desktop/Sapienza/Vision/images/loss_plot_2.png')
 plt.show()
