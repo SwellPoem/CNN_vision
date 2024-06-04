@@ -29,13 +29,11 @@ The objective is achieved by the use of: MediaPipe Hand Landmarker for hand land
     │    └── image
     ├── test_and_train
     │    ├── test_cnn.py
-    │    ├── train_cnn_npy.py
     │    └── train_cnn.py
     ├── utils
     │    ├── constants.py
     │    ├── dataset_augment
     │    ├── dataset_converter.py
-    │    ├── dataset_npy.py
     │    ├── dataset.py
     │    ├── model.py
     │    └── preprocess.py
@@ -45,7 +43,7 @@ The objective is achieved by the use of: MediaPipe Hand Landmarker for hand land
     │    └── webcam.py
     ├── .gitignore
     ├── cnn.py
-    └── README.MD
+    └── README.md
 ```
 
 ## How to run
