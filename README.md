@@ -20,7 +20,7 @@ The CNN is used to perform real-time hand gesture recognition usign a webcam.
 The objective is achieved by the use of: MediaPipe Hand Landmarker for hand landmarks detection and the custom CNN for hand gesture classification.
 
 ## Weights
-The ``` .pth ``` files can be downloaded at [this link](https://drive.google.com/drive/folders/1WVqr217AOnhyXsT0e7ei5433wcgNX5w1?usp=sharing).
+The ``` .pth ``` files can be downloaded at this [link](https://drive.google.com/drive/folders/1WVqr217AOnhyXsT0e7ei5433wcgNX5w1?usp=sharing).
 
 ## Additional Stuff
 - **Rock Paper Scissors Game:** A variant of the simple real-time gesture recognition with the webcam. The user can play 'Rock, Paper, Scissors' against the network with a simple intereface.
