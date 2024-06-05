@@ -2,6 +2,7 @@
 #This script runs the webcam feed and performs hand detection using YOLO 
 #and gesture classification using HandGestureCNN.
 #slow framerate
+#Needs the yolo_hand_detection_master folder in the same directory as this script
 
 import cv2
 import torch
