@@ -55,3 +55,6 @@ The ``` .pth ``` files can be downloaded at this [link](https://drive.google.com
 - To run the simple hand detection with the webcam: in the terminal use the command ``` python -m webcam_run.webcam_mediapipe ```
 
 - To run the Rock, Paper, Scissors game: in the terminal use the command ``` python -m webcam_run.webcam_rps ```
+
+## Presentation
+Available at this [link](https://drive.google.com/drive/folders/1WVqr217AOnhyXsT0e7ei5433wcgNX5w1?usp=sharing)
